@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6h6yqefu0yqw"]
+
+[ext_resource type="ArrayMesh" uid="uid://bp4ilqcrglxlm" path="res://Assets/mesh_player.tres" id="1_cuy04"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tynql"]
+size = Vector3(2, 2, 2)
+
+[node name="Player_Ball" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tynql")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cuy04")

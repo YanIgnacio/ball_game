@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bysxko0g4pm53"]
+
+[ext_resource type="PackedScene" uid="uid://b6h6yqefu0yqw" path="res://Assets/player_ball.tscn" id="1_3agch"]
+[ext_resource type="Script" path="res://Scripts/player_ball.gd" id="2_6458t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0kwpl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4rnim"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyt2y"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcamq"]
+size = Vector3(30, 1, 30)
+
+[node name="LevelRoot" type="Node3D"]
+
+[node name="Cube" type="RigidBody3D" parent="."]
+transform = Transform3D(0.896169, -0.369954, 0.244979, 0.443713, 0.747199, -0.494785, 0, 0.552112, 0.83377, 2.74682, 3.30584, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
+shape = SubResource("BoxShape3D_0kwpl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
+mesh = SubResource("BoxMesh_4rnim")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997357, -0.0726638, 0, 0.0726638, 0.997357, -0.029685, 0.479596, 8.66103)
+
+[node name="LvL_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.530289, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LvL_Floor"]
+shape = SubResource("BoxShape3D_cyt2y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LvL_Floor"]
+mesh = SubResource("BoxMesh_dcamq")
+
+[node name="Player_Ball" parent="." instance=ExtResource("1_3agch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.489562, 0)
+script = ExtResource("2_6458t")

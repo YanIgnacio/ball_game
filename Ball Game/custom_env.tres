@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://68jvy8iyn4yf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4iq0x"]
+
+[sub_resource type="Sky" id="Sky_gsqaf"]
+sky_material = SubResource("ProceduralSkyMaterial_4iq0x")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_gsqaf")
+ambient_light_color = Color(0.952059, 0.95158, 0.950271, 1)
+ssao_enabled = true
+ssao_intensity = 4.0
+ssao_light_affect = 1.0

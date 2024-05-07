@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjfo5rmrwi0h"]
+
+[ext_resource type="FontFile" uid="uid://7kgix0qaehlx" path="res://fonts/Super Gallery Personal Use.ttf" id="1_d1vhk"]
+[ext_resource type="Script" path="res://play_button_death.gd" id="2_kqplg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.165656, 0.165656, 0.165656, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 222.0
+offset_right = 1920.0
+offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("1_d1vhk")
+theme_override_font_sizes/font_size = 120
+text = "YOU DIED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_button_death" type="Button" parent="."]
+layout_mode = 0
+offset_top = 552.0
+offset_right = 1920.0
+offset_bottom = 642.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 1, 1)
+theme_override_fonts/font = ExtResource("1_d1vhk")
+theme_override_font_sizes/font_size = 80
+text = "Restart
+"
+flat = true
+script = ExtResource("2_kqplg")
+
+[connection signal="pressed" from="play_button_death" to="play_button_death" method="_on_pressed"]

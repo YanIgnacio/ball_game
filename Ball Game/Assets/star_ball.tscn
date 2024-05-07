@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwtfwojgiw363"]
+
+[ext_resource type="ArrayMesh" uid="uid://bp4ilqcrglxlm" path="res://Assets/mesh_player.tres" id="1_r3ydx"]
+
+[node name="Player_Ball"]
+
+[node name="Sphere" parent="." index="0"]
+mesh = ExtResource("1_r3ydx")

@@ -1,0 +1,394 @@
+[gd_scene load_steps=23 format=3 uid="uid://bysxko0g4pm53"]
+
+[ext_resource type="PackedScene" uid="uid://b6h6yqefu0yqw" path="res://Assets/player_ball.tscn" id="1_3agch"]
+[ext_resource type="Texture2D" uid="uid://cm1pihh274ial" path="res://textures/TactilePaving002_2K-JPG_NormalDX.jpg" id="1_srw8w"]
+[ext_resource type="Script" path="res://Scripts/player_ball.gd" id="2_6458t"]
+[ext_resource type="Texture2D" uid="uid://cwq1xdenygx6d" path="res://textures/TactilePaving002_2K-JPG_Roughness.jpg" id="2_qhhyt"]
+[ext_resource type="Environment" uid="uid://68jvy8iyn4yf" path="res://custom_env.tres" id="3_6sljn"]
+[ext_resource type="MeshLibrary" uid="uid://dmj7ymtwpeqp" path="res://Assets/blocksLib.tres" id="6_ggfsl"]
+[ext_resource type="PackedScene" uid="uid://brqrsd8fjagab" path="res://Assets/enemy.tscn" id="7_1t43d"]
+[ext_resource type="PackedScene" uid="uid://cstmspyeeowwp" path="res://Assets/coin.tscn" id="8_2bkmj"]
+[ext_resource type="Texture2D" uid="uid://crxfwjc5iwj4f" path="res://sprites/hud_coin.png" id="9_jljd8"]
+[ext_resource type="FontFile" uid="uid://7kgix0qaehlx" path="res://fonts/Super Gallery Personal Use.ttf" id="10_3nmb0"]
+[ext_resource type="Script" path="res://Scripts/Counter.gd" id="11_vmegp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cyt2y"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rog0k"]
+albedo_color = Color(1, 0, 1, 1)
+roughness_texture = ExtResource("2_qhhyt")
+normal_enabled = true
+normal_scale = 5.0
+normal_texture = ExtResource("1_srw8w")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcamq"]
+material = SubResource("StandardMaterial3D_rog0k")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="Animation" id="Animation_yqand"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-15.7372, 1.07255, 7.99795)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q3wie"]
+resource_name = "enemy1animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-15.7372, 1.07255, 4.8159), Vector3(-15.7372, 1.07255, 14.439), Vector3(-9.86794, 1.07255, 14.439), Vector3(-9.86794, 1.07255, 4.97202), Vector3(-16.1167, 1.07255, 4.97202)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0), Vector3(6.28319, 0, -3.14159), Vector3(0, 0, -3.14159), Vector3(0, 0, 3.14159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwv8h"]
+_data = {
+"RESET": SubResource("Animation_yqand"),
+"enemy1animation": SubResource("Animation_q3wie")
+}
+
+[sub_resource type="Animation" id="Animation_gcact"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(15.2441, 1.07255, 4.30188)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r5tap"]
+resource_name = "enemy2animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(15.1641, 1.07255, 3.68787), Vector3(15.2441, 1.07255, 14.3072), Vector3(7.36975, 1.07255, 14.3072), Vector3(7.36975, 1.07255, 3.68787), Vector3(15.1641, 1.07255, 3.68787)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0), Vector3(6.28319, 0, 3.14159), Vector3(0, 0, 3.14159), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1wf7p"]
+resource_name = "enemy3animation"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-20.8364, 1.07255, -12.448), Vector3(-11.0332, 1.07255, -12.1705), Vector3(-11.0332, 1.07255, -20.9564), Vector3(-20.8364, 1.07255, -20.9564), Vector3(-20.8364, 1.07255, -12.448)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.14159), Vector3(-3.14159, 0, -3.14159), Vector3(-3.14159, 0, -6.28319), Vector3(0, 0, -6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_qttrj"]
+resource_name = "enemy4animation"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6, 7.5, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(20.7931, 1.07255, -16.7843), Vector3(8.34465, 1.07255, -16.7843), Vector3(8.34465, 1.07255, -21.5416), Vector3(20.6345, 1.07255, -21.5416), Vector3(8.34465, 1.07255, -21.5416), Vector3(8.34465, 1.07255, -16.7843), Vector3(20.7931, 1.07255, -16.7843)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6, 7.5, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.14159), Vector3(-3.14159, 0, 3.14159), Vector3(-3.14159, 0, 6.28319), Vector3(-3.14159, 0, 3.14159), Vector3(0, 0, 3.14159), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2uhyb"]
+_data = {
+"RESET": SubResource("Animation_gcact"),
+"enemy2animation": SubResource("Animation_r5tap"),
+"enemy3animation": SubResource("Animation_1wf7p"),
+"enemy4animation": SubResource("Animation_qttrj")
+}
+
+[node name="LevelRoot" type="Node3D"]
+
+[node name="LvL_Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.530289, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LvL_Floor"]
+shape = SubResource("BoxShape3D_cyt2y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LvL_Floor"]
+mesh = SubResource("BoxMesh_dcamq")
+
+[node name="Player_Ball" parent="." instance=ExtResource("1_3agch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48956, 0)
+script = ExtResource("2_6458t")
+
+[node name="Camera3D" type="Camera3D" parent="Player_Ball"]
+transform = Transform3D(1, 0, 0, 0, 0.893513, 0.449038, 0, -0.449038, 0.893513, 0, 5.79641, 11.5399)
+environment = ExtResource("3_6sljn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.827077, 0.00650613, -0.562051, 0.562012, -0.0260595, 0.826719, -0.00926803, -0.999639, -0.0252098, -9.80028, 9.08552, 0.0102673)
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("6_ggfsl")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65511, 65511, 786432, 65511, 65512, 786432, 65511, 65513, 786432, 65511, 65514, 786432, 65511, 65515, 786432, 65511, 65516, 786432, 65511, 65517, 786432, 65511, 65518, 786432, 65511, 65519, 786432, 65511, 65520, 786432, 65511, 65521, 786432, 65511, 65522, 786432, 65511, 65523, 786432, 65511, 65524, 786432, 65511, 65525, 786432, 65511, 65526, 786432, 65511, 65527, 786432, 65511, 65528, 786432, 65511, 65529, 786432, 65511, 65530, 786432, 65511, 65531, 786432, 65511, 65532, 786432, 65511, 65533, 786432, 65511, 65534, 786432, 65511, 65535, 786432, 65511, 0, 786432, 65511, 1, 786432, 65511, 2, 786432, 65511, 3, 786432, 65511, 4, 786432, 65511, 5, 786432, 65511, 6, 786432, 65511, 7, 786432, 65511, 8, 786432, 65511, 9, 786432, 65511, 10, 786432, 65511, 11, 786432, 65511, 12, 786432, 65511, 13, 786432, 65511, 14, 786432, 65511, 15, 786432, 65511, 16, 786432, 65511, 17, 786432, 65511, 18, 786432, 65511, 19, 786432, 65511, 20, 786432, 65511, 21, 786432, 65511, 22, 786432, 65511, 23, 786432, 65511, 24, 786432, 65512, 24, 786432, 65513, 24, 786432, 65514, 24, 786432, 65515, 24, 786432, 65516, 24, 786432, 65518, 24, 786432, 65519, 24, 786432, 65520, 24, 786432, 65517, 24, 786432, 65521, 24, 786432, 65522, 24, 786432, 65523, 24, 786432, 65524, 24, 786432, 65525, 24, 786432, 65527, 24, 786432, 65530, 24, 786432, 65531, 24, 786432, 65532, 24, 786432, 65533, 24, 786432, 65534, 24, 786432, 65535, 24, 786432, 0, 24, 786432, 1, 24, 786432, 2, 24, 786432, 3, 24, 786432, 4, 24, 786432, 21, 24, 786432, 22, 24, 786432, 23, 24, 786432, 20, 24, 786432, 19, 24, 786432, 9, 24, 786432, 8, 24, 786432, 7, 24, 786432, 6, 24, 786432, 10, 24, 786432, 5, 24, 786432, 65529, 24, 786432, 65528, 24, 786432, 65526, 24, 786432, 17, 24, 786432, 16, 24, 786432, 15, 24, 786432, 14, 24, 786432, 13, 24, 786432, 12, 24, 786432, 11, 24, 786432, 18, 24, 786432, 24, 24, 0, 24, 23, 0, 24, 22, 0, 24, 21, 0, 24, 20, 0, 24, 19, 0, 24, 18, 0, 24, 17, 0, 24, 16, 0, 24, 15, 0, 24, 14, 0, 24, 13, 0, 24, 12, 0, 24, 11, 0, 24, 10, 0, 24, 9, 0, 24, 8, 0, 24, 7, 0, 24, 6, 0, 24, 5, 0, 24, 4, 0, 24, 3, 0, 24, 2, 0, 24, 1, 0, 24, 0, 0, 24, 65535, 0, 24, 65534, 0, 24, 65533, 0, 24, 65532, 0, 24, 65531, 0, 24, 65530, 0, 24, 65529, 0, 24, 65528, 0, 24, 65527, 0, 24, 65526, 0, 24, 65525, 0, 24, 65524, 0, 24, 65523, 0, 24, 65522, 0, 24, 65521, 0, 24, 65520, 0, 24, 65519, 0, 24, 65518, 0, 24, 65517, 0, 24, 65516, 0, 24, 65515, 0, 24, 65514, 0, 24, 65513, 0, 24, 65512, 0, 24, 65511, 0, 23, 65511, 0, 22, 65511, 0, 21, 65511, 0, 20, 65511, 0, 19, 65511, 0, 18, 65511, 0, 17, 65511, 0, 16, 65511, 0, 15, 65511, 0, 14, 65511, 0, 13, 65511, 0, 12, 65511, 0, 11, 65511, 0, 10, 65511, 0, 9, 65511, 0, 8, 65511, 0, 7, 65511, 0, 6, 65511, 0, 5, 65511, 0, 4, 65511, 0, 3, 65511, 0, 2, 65511, 0, 1, 65511, 0, 0, 65511, 0, 65535, 65511, 0, 65534, 65511, 0, 65533, 65511, 0, 65532, 65511, 0, 65531, 65511, 0, 65530, 65511, 0, 65529, 65511, 0, 65528, 65511, 0, 65527, 65511, 0, 65526, 65511, 0, 65525, 65511, 0, 65524, 65511, 0, 65523, 65511, 0, 65522, 65511, 0, 65521, 65511, 0, 65520, 65511, 0, 65519, 65511, 0, 65518, 65511, 0, 65517, 65511, 0, 65516, 65511, 0, 65515, 65511, 0, 65514, 65511, 0, 65513, 65511, 0, 65512, 65511, 0, 65516, 65526, 1441793, 65517, 65526, 1441793, 65518, 65526, 1441793, 65519, 65526, 1441793, 65520, 65526, 1441793, 65521, 65526, 1441793, 65522, 65526, 1441793, 65523, 65526, 1441793, 65524, 65526, 1441793, 65525, 65526, 1441793, 65526, 65526, 1441793, 65527, 65526, 1441793, 65527, 65525, 1441793, 65527, 65524, 1441793, 65527, 65523, 1441793, 65527, 65522, 1441793, 65527, 65521, 1441793, 65527, 65520, 1441793, 65527, 65519, 1441793, 65527, 65518, 1441793, 65527, 65517, 1441793, 65516, 65532, 1441793, 65517, 65532, 1441793, 65518, 65532, 1441793, 65519, 65532, 1441793, 65520, 65532, 1441793, 65521, 65532, 1441793, 65522, 65532, 1441793, 65523, 65532, 1441793, 65524, 65532, 1441793, 65525, 65532, 1441793, 65526, 65532, 1441793, 65527, 65532, 1441793, 65528, 65532, 1441793, 65529, 65532, 1441793, 65530, 65532, 1441793, 65531, 65532, 1441793, 65532, 65532, 1441793, 65532, 65533, 1441793, 65532, 65534, 1441793, 65532, 65535, 1441793, 65532, 0, 1441793, 65532, 1, 1441793, 65532, 2, 1441793, 65532, 3, 1441793, 65528, 9, 1441793, 65528, 8, 1441793, 65528, 7, 1441793, 65528, 6, 1441793, 65528, 5, 1441793, 65528, 4, 1441793, 65528, 3, 1441793, 65528, 2, 1441793, 65527, 2, 1441793, 65526, 2, 1441793, 65525, 2, 1441793, 65524, 2, 1441793, 65523, 2, 1441793, 65522, 2, 1441793, 65521, 2, 1441793, 65520, 2, 1441793, 65519, 2, 1441793, 65518, 2, 1441793, 65517, 2, 1441793, 65517, 3, 1441793, 65517, 4, 1441793, 65517, 5, 1441793, 65517, 6, 1441793, 65517, 7, 1441793, 65517, 8, 1441793, 65517, 9, 1441793, 65517, 10, 1441793, 65517, 11, 1441793, 65517, 12, 1441793, 65517, 13, 1441793, 65517, 14, 1441793, 65517, 15, 1441793, 65517, 16, 1441793, 65518, 16, 1441793, 65519, 16, 1441793, 65520, 16, 1441793, 65521, 16, 1441793, 65522, 16, 1441793, 65523, 16, 1441793, 65524, 16, 1441793, 65525, 16, 1441793, 65526, 16, 1441793, 65527, 16, 1441793, 65532, 16, 1441793, 65533, 16, 1441793, 65534, 16, 1441793, 65535, 16, 1441793, 0, 16, 1441793, 1, 16, 1441793, 2, 16, 1441793, 3, 16, 1441793, 4, 16, 1441793, 5, 16, 1441793, 6, 16, 1441793, 7, 16, 1441793, 8, 16, 1441793, 9, 16, 1441793, 10, 16, 1441793, 11, 16, 1441793, 12, 16, 1441793, 13, 16, 1441793, 14, 16, 1441793, 15, 16, 1441793, 16, 16, 1441793, 17, 16, 1441793, 18, 16, 1441793, 3, 15, 1441793, 3, 14, 1441793, 3, 13, 1441793, 3, 12, 1441793, 3, 11, 1441793, 3, 10, 1441793, 3, 9, 1441793, 3, 8, 1441793, 3, 7, 1441793, 3, 6, 1441793, 3, 5, 1441793, 3, 4, 1441793, 3, 3, 1441793, 3, 2, 1441793, 3, 1, 1441793, 7, 1, 1441793, 8, 1, 1441793, 9, 1, 1441793, 10, 1, 1441793, 11, 1, 1441793, 12, 1, 1441793, 13, 1, 1441793, 14, 1, 1441793, 15, 1, 1441793, 16, 1, 1441793, 17, 1, 1441793, 18, 1, 1441793, 19, 1, 1441793, 19, 2, 1441793, 19, 3, 1441793, 19, 4, 1441793, 19, 5, 1441793, 19, 6, 1441793, 19, 7, 1441793, 19, 8, 1441793, 19, 9, 1441793, 3, 65530, 1441793, 4, 65530, 1441793, 5, 65530, 1441793, 6, 65530, 1441793, 7, 65530, 1441793, 8, 65530, 1441793, 9, 65530, 1441793, 10, 65530, 1441793, 11, 65530, 1441793, 12, 65530, 1441793, 13, 65530, 1441793, 14, 65530, 1441793, 15, 65530, 1441793, 16, 65530, 1441793, 17, 65530, 1441793, 18, 65530, 1441793, 19, 65530, 1441793, 19, 65528, 1441793, 19, 65529, 1441793, 19, 65527, 1441793, 19, 65526, 1441793, 19, 65525, 1441793, 19, 65524, 1441793, 19, 65523, 1441793, 19, 65522, 1441793, 19, 65521, 1441793, 18, 65521, 1441793, 17, 65521, 1441793, 16, 65521, 1441793, 15, 65521, 1441793, 14, 65521, 1441793, 13, 65521, 1441793, 12, 65521, 1441793, 11, 65521, 1441793, 10, 65521, 1441793, 9, 65521, 1441793, 8, 65521, 1441793, 7, 65521, 1441793, 6, 65521, 1441793, 5, 65521, 1441793, 5, 65520, 1441793, 5, 65519, 1441793, 5, 65518, 1441793, 5, 65517, 1441793, 10, 65516, 1441793, 11, 65516, 1441793, 12, 65516, 1441793, 13, 65516, 1441793, 14, 65516, 1441793, 15, 65516, 1441793, 16, 65516, 1441793, 17, 65516, 1441793, 18, 65516, 1441793, 19, 65516, 1441793, 20, 65516, 1441793, 21, 65516, 1441793, 22, 65516, 1441793, 23, 65516, 1441793, 65528, 65526, 1441793, 65529, 65526, 1441793, 65530, 65526, 1441793, 65531, 65526, 1441793, 65532, 65526, 1441793, 65533, 65526, 1441793, 65533, 65512, 1441793, 65533, 65513, 1441793, 65533, 65514, 1441793, 65533, 65515, 1441793, 65533, 65516, 1441793, 65533, 65517, 1441793, 65533, 65518, 1441793, 65533, 65519, 1441793, 65533, 65520, 1441793, 4, 65526, 1441793, 5, 65526, 1441793, 6, 65526, 1441793, 7, 65526, 1441793, 8, 65526, 1441793, 9, 65526, 1441793, 10, 65526, 1441793, 11, 65526, 1441793, 12, 65526, 1441793, 13, 65526, 1441793, 14, 65526, 1441793, 15, 65526, 1441793, 16, 65526, 1441793, 17, 65526, 1441793, 18, 65526, 1441793, 11, 5, 1, 11, 6, 1, 11, 7, 1, 11, 8, 1, 11, 9, 1, 11, 10, 1, 11, 11, 1, 11, 12, 1, 65522, 12, 1, 65522, 11, 1, 65522, 10, 1, 65522, 9, 1, 65522, 8, 1, 65522, 7, 1, 65522, 6, 1, 65555, 9, 1, 65555, 8, 1, 65555, 7, 1, 65555, 6, 1, 65555, 5, 1, 65555, 4, 1)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="enemy1" parent="." instance=ExtResource("7_1t43d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7372, 1.07255, 7.99795)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy1"]
+libraries = {
+"": SubResource("AnimationLibrary_vwv8h")
+}
+autoplay = "enemy1animation"
+
+[node name="enemy2" parent="." instance=ExtResource("7_1t43d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2441, 1.07255, 4.30188)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy2"]
+libraries = {
+"": SubResource("AnimationLibrary_2uhyb")
+}
+autoplay = "enemy2animation"
+
+[node name="enemy3" parent="." instance=ExtResource("7_1t43d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2441, 1.07255, 4.30188)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy3"]
+libraries = {
+"": SubResource("AnimationLibrary_2uhyb")
+}
+autoplay = "enemy3animation"
+
+[node name="enemy4" parent="." instance=ExtResource("7_1t43d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2441, 1.07255, 4.30188)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy4"]
+libraries = {
+"": SubResource("AnimationLibrary_2uhyb")
+}
+autoplay = "enemy4animation"
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="coinholder" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13785, 7.16025)
+
+[node name="coin" parent="Coins/coinholder" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder2" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9924, 1.13785, -2.1699)
+
+[node name="coin" parent="Coins/coinholder2" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder3" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8176, 1.13785, -21.1567)
+
+[node name="coin" parent="Coins/coinholder3" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder4" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.912, 1.13785, -20.5697)
+
+[node name="coin" parent="Coins/coinholder4" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder5" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9345, 1.13785, -12.4992)
+
+[node name="coin" parent="Coins/coinholder5" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder6" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9682, 1.13785, -11.534)
+
+[node name="coin" parent="Coins/coinholder6" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder7" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0319, 1.13785, 9.39153)
+
+[node name="coin" parent="Coins/coinholder7" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder8" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1967, 1.13785, 9.39453)
+
+[node name="coin" parent="Coins/coinholder8" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder9" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1246, 1.13785, 9.47556)
+
+[node name="coin" parent="Coins/coinholder9" instance=ExtResource("8_2bkmj")]
+
+[node name="coinholder10" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.90074, 1.13785, 9.58556)
+
+[node name="coin" parent="Coins/coinholder10" instance=ExtResource("8_2bkmj")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(1541, 89)
+scale = Vector2(0.268, 0.268)
+texture = ExtResource("9_jljd8")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1614.0
+offset_top = 66.0
+offset_right = 1654.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("10_3nmb0")
+theme_override_font_sizes/font_size = 50
+text = "X"
+
+[node name="Counter" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1654.0
+offset_top = 28.0
+offset_right = 1877.0
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "Q
+"
+script = ExtResource("11_vmegp")
+
+[node name="Timer" type="Timer" parent="Control/Counter"]
+
+[connection signal="body_entered" from="enemy1" to="Player_Ball" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="enemy2" to="Player_Ball" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="enemy3" to="Player_Ball" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="enemy4" to="Player_Ball" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Coins/coinholder/coin" to="Coins/coinholder/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder2/coin" to="Coins/coinholder2/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder2/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder3/coin" to="Coins/coinholder3/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder3/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder4/coin" to="Coins/coinholder4/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder4/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder5/coin" to="Coins/coinholder5/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder5/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder6/coin" to="Coins/coinholder6/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder6/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder7/coin" to="Coins/coinholder7/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder7/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder8/coin" to="Coins/coinholder8/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder8/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder9/coin" to="Coins/coinholder9/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder9/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder10/coin" to="Coins/coinholder10/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder10/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="timeout" from="Control/Counter/Timer" to="Control/Counter" method="_on_timer_timeout"]
